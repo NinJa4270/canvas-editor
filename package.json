@@ -1,0 +1,20 @@
+{
+  "name": "canvas-editor",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev:core": "pnpm -F @ninja/core dev",
+    "build:core": "pnpm -F @ninja/core build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-typescript": "^9.0.2",
+    "rollup": "^3.2.5",
+    "tslib": "^2.4.1",
+    "typescript": "^4.8.4"
+  }
+}
