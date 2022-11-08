@@ -1,11 +1,10 @@
-import { NodeType } from "../nodes/types";
-import { RectRender } from "./fabric/RectRender";
-
+import { NodeType } from '../nodes/types'
+import { RectRender } from './fabric/RectRender'
 
 const renderMap = {
-    [NodeType.Rect]: RectRender
+  [NodeType.Rect]: RectRender,
 }
 
 export function createRender(type: NodeType) {
-    return new renderMap[type]()
+  return new renderMap[type]()
 }

@@ -1,10 +1,10 @@
-import { Size } from "../../types"
-import { NodeType } from "../types"
+import { Size } from '../../types'
+import { NodeType } from '../types'
 
 export interface NodeConfig {
-    size: Size
+  size: Size
 }
 export class Node {
-    type = NodeType.Node
-    constructor(config: NodeConfig) { }
+  type = NodeType.Node
+  constructor(config: NodeConfig) {}
 }

@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev:core": "pnpm -F @ninja/core dev",
-    "build:core": "pnpm -F @ninja/core build"
+    "build:core": "pnpm -F @ninja/core build",
+    "lint": "eslint packages/**/*.ts",
+    "format": "prettier --write 'packages/**/*.ts'"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +15,11 @@
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-typescript": "^9.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "@typescript-eslint/parser": "^5.42.1",
+    "eslint": "^8.27.0",
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "^2.7.1",
     "rollup": "^3.2.5",
     "tslib": "^2.4.1",
     "typescript": "^4.8.4"

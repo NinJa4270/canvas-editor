@@ -1,3 +1,3 @@
-import { RenderImp } from "./RenderImp";
+import { RenderImp } from './RenderImp'
 
-export interface RectRenderImp extends RenderImp { }
+export interface RectRenderImp extends RenderImp {}

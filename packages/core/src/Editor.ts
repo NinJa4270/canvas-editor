@@ -1,9 +1,9 @@
-import { RectNode } from "./nodes"
-import { Size } from "./types"
+import { RectNode } from './nodes'
+import { Size } from './types'
 
 interface EditorConfig {
-    el: HTMLCanvasElement
-    size: Size
+  el: HTMLCanvasElement
+  size: Size
 }
 
 /**
@@ -12,23 +12,21 @@ interface EditorConfig {
  * @class Editor
  */
 class Editor {
-    el: HTMLCanvasElement
-    constructor(config: EditorConfig) {
-        this.el = config.el
-    }
+  el: HTMLCanvasElement
+  constructor(config: EditorConfig) {
+    this.el = config.el
+  }
 
-    loadJSON(json: any[]) {
-        const element = json[0]
-        const node = new RectNode({
-            size: element.size
-        })
-        node.render()
-    }
+  loadJSON(json: any[]) {
+    const element = json[0]
+    const node = new RectNode({
+      size: element.size,
+    })
+    node.render()
+  }
 }
 
-
-
 export function createEditor(config: EditorConfig): Editor {
-    const editor = new Editor(config)
-    return editor
-} 
+  const editor = new Editor(config)
+  return editor
+}
