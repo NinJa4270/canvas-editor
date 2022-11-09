@@ -1,10 +1,13 @@
 import { RectNode, RootNode } from './nodes'
 import { Size } from './types'
-import { fabric } from 'fabric'
-console.log('%cEditor.ts line:4 fabric', 'color: #007acc;', fabric)
 interface EditorConfig {
-  el: HTMLCanvasElement
+  el: HTMLElement
   size: Size
+}
+
+const DefaultOptions = {
+  height: 500,
+  width: 1000,
 }
 
 /**
@@ -13,10 +16,12 @@ interface EditorConfig {
  * @class Editor
  */
 class Editor {
-  el: HTMLCanvasElement
+  el: HTMLElement
   wrapper?: RootNode
+  size: Size
   constructor(config: EditorConfig) {
     this.el = config.el
+    this.size = config.size
     this.init()
   }
 
@@ -27,17 +32,19 @@ class Editor {
     this.wrapper = new RootNode({
       el: this.el,
       size: {
-        height: this.el.height,
-        width: this.el.width,
+        height: this.size.height || DefaultOptions.height,
+        width: this.size.width || DefaultOptions.width,
       },
     })
   }
 
   loadJSON(json: any[]) {
-    // const element = json[0]
-    // const node = new RectNode({
-    //   size: element.size,
-    // })
+    const element = json[0]
+    const node = new RectNode({
+      size: element.size,
+    })
+    this.wrapper!.el.add(node.el)
+    console.log('%cEditor.ts line:47 node.el', 'color: #007acc;', node.el)
     // node.render()
   }
 }

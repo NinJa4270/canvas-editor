@@ -7,8 +7,12 @@ interface RectConfig extends NodeConfig {}
 export class RectNode extends Node {
   type = NodeType.Rect
   _render = createRender(NodeType.Rect)
+
+  el: any
+
   constructor(config: RectConfig) {
-    super({ el: config.el, size: config.size })
+    super({ size: config.size })
+    this.el = this._render.createEl()
   }
 
   render() {

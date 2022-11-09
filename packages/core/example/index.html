@@ -9,11 +9,10 @@
 </head>
 
 <body>
-    <canvas id="canvas" height="512" width="512"></canvas>
+    <div id="wrapper"></div>
     <script type="module">
         import { createEditor } from '../../../dist/editor.esm.js'
-        const canvas = document.getElementById('canvas')
-
+        const wrapper = document.getElementById('wrapper')
         const json = [
             {
                 type: 'rect',
@@ -23,9 +22,12 @@
                 }
             }
         ]
-
         const editor = createEditor({
-            el: canvas
+            el: wrapper,
+            size: {
+                height: 600,
+                width: 1200
+            }
         })
 
         editor.loadJSON(json)
