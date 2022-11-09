@@ -1,9 +1,13 @@
 import { RectRenderImp } from '../implements/RectRender'
 import { Render } from './Render'
 
-export class RectRender extends Render implements RectRenderImp {
+export class RootRender extends Render implements RectRenderImp {
   constructor() {
     super()
+    this.createEl()
   }
+
+  createEl() {}
+
   render(): void {}
 }

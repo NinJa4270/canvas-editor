@@ -4,10 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev":"rollup -c ../../rollup.config.js -w",
+    "dev": "rollup -c ../../rollup.config.js -w",
     "build": "rollup -c ../../rollup.config.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "fabric": "4.5.0"
+  },
+  "devDependencies": {
+    "@types/fabric": "^4.5.12"
+  }
 }

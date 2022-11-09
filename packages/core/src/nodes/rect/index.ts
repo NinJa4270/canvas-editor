@@ -8,7 +8,7 @@ export class RectNode extends Node {
   type = NodeType.Rect
   _render = createRender(NodeType.Rect)
   constructor(config: RectConfig) {
-    super({ size: config.size })
+    super({ el: config.el, size: config.size })
   }
 
   render() {
