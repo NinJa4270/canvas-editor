@@ -1,25 +1,49 @@
-import { RectRenderImp } from '../implements/RectRender'
+import { RootRenderImp } from '../implements'
 import { Render } from './Render'
 import { fabric } from 'fabric'
 import { Size } from '../../types'
-export class RootRender extends Render implements RectRenderImp {
-  el?: any
-  constructor() {
-    super()
+import { Node } from '../../nodes/node'
+export class RootRender extends Render implements RootRenderImp {
+  renderElement?: any
+  constructor(node: Node) {
+    super(node)
   }
 
-  createEl(el: HTMLElement, size: Size, id: string) {
-    const canvas = new fabric.Canvas(id)
-    this.el = canvas
-    el.append(this.el.wrapperEl)
+  createRenderElement(el: HTMLElement, size: Size, id: string) {
+    const canvas: any = new fabric.Canvas(id)
+    el.append(canvas.wrapperEl)
+    this.renderElement = canvas
     this.setSize(size)
-    return this.el
   }
 
+  /**
+   * @description 设置画布大小
+   * @param {Size} size
+   */
   setSize(size: Size) {
-    this.el.setWidth(size.width)
-    this.el.setHeight(size.height)
+    this.renderElement.setWidth(size.width)
+    this.renderElement.setHeight(size.height)
   }
 
-  render(): void {}
+  /**
+   * @description 获取render对象
+   */
+  getRenderElement() {
+    return this.renderElement
+  }
+
+  /**
+   * @description 获取真实dom元素
+   */
+  getElement() {
+    return this.renderElement.wrapperEl
+  }
+
+  /**
+   * @description 添加元素
+   * @param {*} el
+   */
+  addElement(el: any) {
+    this.renderElement.add(el)
+  }
 }

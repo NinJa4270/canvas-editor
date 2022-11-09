@@ -1,7 +1,7 @@
 import { NodeType } from '../nodes/types'
 import { RectRender } from './fabric/RectRender'
 import { RootRender } from './fabric/RootRender'
-
+import { Node } from '../nodes/node'
 type RenderMap = { [k in NodeType]?: any }
 
 const renderMap: RenderMap = {
@@ -9,6 +9,6 @@ const renderMap: RenderMap = {
   [NodeType.Root]: RootRender,
 }
 
-export function createRender(type: NodeType) {
-  return new renderMap[type]()
+export function createRender(type: NodeType, node: Node) {
+  return new renderMap[type](node)
 }

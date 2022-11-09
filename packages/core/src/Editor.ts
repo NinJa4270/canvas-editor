@@ -43,9 +43,7 @@ class Editor {
     const node = new RectNode({
       size: element.size,
     })
-    this.wrapper!.el.add(node.el)
-    console.log('%cEditor.ts line:47 node.el', 'color: #007acc;', node.el)
-    // node.render()
+    this.wrapper?.addElement(node.getRenderElement())
   }
 }
 

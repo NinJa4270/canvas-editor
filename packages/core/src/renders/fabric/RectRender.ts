@@ -1,14 +1,14 @@
-import { RectRenderImp } from '../implements/RectRender'
+import { RectRenderImp } from '../implements'
 import { Render } from './Render'
 import { fabric } from 'fabric'
-
+import { Node } from '../../nodes/node'
 export class RectRender extends Render implements RectRenderImp {
-  el?: any
-  constructor() {
-    super()
+  renderElement?: any
+  constructor(node: Node) {
+    super(node)
   }
 
-  createEl() {
+  createRenderElement() {
     const el = new fabric.Rect({
       left: 200, //距离左边的距离
       top: 200, //距离上边的距离
@@ -16,9 +16,14 @@ export class RectRender extends Render implements RectRenderImp {
       width: 200, //矩形宽度
       height: 200, //矩形高度
     })
-
-    return el
+    this.renderElement = el
   }
 
-  render(): void {}
+  getRenderElement() {
+    return this.renderElement
+  }
+
+  getElement() {
+    return this.renderElement.wrapperEl
+  }
 }
