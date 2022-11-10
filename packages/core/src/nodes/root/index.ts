@@ -28,7 +28,6 @@ export class RootNode extends Node {
 
   constructor(config: RootNodeConfig) {
     const options = merge(config, defaultOptions)
-    console.log('%cindex.ts line:31 options', 'color: #007acc;', options)
     super(options)
     this.init(options)
   }

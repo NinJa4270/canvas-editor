@@ -28,7 +28,6 @@ export class RectNode extends Node {
 
   constructor(config: RectConfig) {
     const options = merge(config, defaultOptions)
-    console.log('%cindex.ts line:31 options', 'color: #007acc;', options)
     super(options)
     this.init(options)
   }

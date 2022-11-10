@@ -7,7 +7,7 @@ export interface NodeConfig {
   background: string
 }
 
-export class Node {
+export abstract class Node {
   type = NodeType.Node
   size: Size
   background: string
