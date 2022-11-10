@@ -1,8 +1,14 @@
 import { RootRenderImp } from '../implements'
 import { Render } from './index'
 import { Size } from '../../types'
-import { Node } from '../../nodes'
+import { Node, NodeConfig, RootNodeConfig } from '../../nodes'
 import { fabric } from 'fabric'
+
+export interface createRenderElementOptions {
+  height: number
+  width: number
+  background: string
+}
 
 export class RootRender extends Render implements RootRenderImp {
   renderElement?: any
@@ -10,13 +16,13 @@ export class RootRender extends Render implements RootRenderImp {
     super(node)
   }
 
-  createRenderElement(el: HTMLElement, size: Size, id: string) {
-    const canvas: any = new fabric.Canvas(id, {
-      backgroundColor: '#eee',
+  createRenderElement(el: HTMLElement, options: createRenderElementOptions) {
+    const canvas: any = new fabric.Canvas('c', {
+      ...options,
+      backgroundColor: options.background,
     })
     el.append(canvas.wrapperEl)
     this.renderElement = canvas
-    this.setSize(size)
   }
 
   /**

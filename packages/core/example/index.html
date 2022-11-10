@@ -15,11 +15,23 @@
         const wrapper = document.getElementById('wrapper')
         const json = [
             {
-                type: 'rect',
+                type: 4,
                 size: {
                     height: 100,
                     width: 100
                 }
+            },
+            {
+                type: 4,
+                size: {
+                    height: 300,
+                    width: 50,
+                },
+                position: {
+                    top: 0,
+                    left: 0
+                },
+                background: '#FF0'
             }
         ]
         const editor = createEditor({

@@ -4,6 +4,8 @@ export interface Size {
 }
 
 export interface Position {
-  top: number | string
-  left: number | string
+  top: number
+  left: number
 }
+
+export * from './json'

@@ -1,21 +1,46 @@
 import { createRender, RectRender } from '../../renders'
 import { Position, Size } from '../../types'
-import { NodeConfig, Node } from '../index'
+import { merge } from '../../utils'
+import { Node, NodeConfig } from '../index'
 import { NodeType } from '../types'
 
-interface RectConfig extends NodeConfig {}
+interface RectConfig {
+  size?: Size
+  position?: Position
+  background?: string
+}
+
+const defaultOptions: NodeConfig = {
+  size: {
+    width: 200,
+    height: 200,
+  },
+  position: {
+    left: 200,
+    top: 200,
+  },
+  background: 'green',
+}
 
 export class RectNode extends Node {
   type = NodeType.Rect
   _render = createRender(NodeType.Rect, this) as RectRender
 
   constructor(config: RectConfig) {
-    super({ size: config.size })
-    this.init()
+    const options = merge(config, defaultOptions)
+    console.log('%cindex.ts line:31 options', 'color: #007acc;', options)
+    super(options)
+    this.init(options)
   }
 
-  init() {
-    this._render.createRenderElement()
+  init(config: NodeConfig) {
+    this._render.createRenderElement({
+      height: config.size.height,
+      width: config.size.width,
+      top: config.position.top,
+      left: config.position.left,
+      background: config.background,
+    })
   }
 
   getRenderElement() {

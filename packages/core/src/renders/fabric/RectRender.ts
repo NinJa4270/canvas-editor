@@ -3,19 +3,26 @@ import { Render } from './index'
 import { Node } from '../../nodes'
 import { Position, Size } from '../../types'
 import { fabric } from 'fabric'
+
+interface createRenderElementOptions {
+  height: number
+  width: number
+  top: number
+  left: number
+  background: string
+}
+
 export class RectRender extends Render implements RectRenderImp {
   renderElement!: fabric.Rect
+
   constructor(node: Node) {
     super(node)
   }
 
-  createRenderElement() {
+  createRenderElement(config: createRenderElementOptions) {
     this.renderElement = new fabric.Rect({
-      left: 200, //距离左边的距离
-      top: 200, //距离上边的距离
-      fill: 'green', //填充的颜色
-      width: 200, //矩形宽度
-      height: 200, //矩形高度
+      ...config,
+      fill: config.background,
     })
   }
 

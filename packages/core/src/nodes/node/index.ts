@@ -3,17 +3,19 @@ import { NodeType } from '../types'
 
 export interface NodeConfig {
   size: Size
+  position: Position
+  background: string
 }
+
 export class Node {
   type = NodeType.Node
   size: Size
-  background?: string
-  position: Position = {
-    left: 0,
-    top: 0,
-  }
+  background: string
+  position: Position
   constructor(config: NodeConfig) {
     this.size = config.size
+    this.position = config.position
+    this.background = config.background
   }
 
   setSize(size: Size) {

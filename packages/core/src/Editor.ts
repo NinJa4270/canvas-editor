@@ -1,13 +1,8 @@
-import { RectNode, RootNode } from './nodes'
-import { Size } from './types'
+import { NodeType, RectNode, RootNode } from './nodes'
+import { Size, Json } from './types'
 interface EditorConfig {
   el: HTMLElement
   size: Size
-}
-
-const DefaultOptions = {
-  height: 500,
-  width: 1000,
 }
 
 /**
@@ -18,47 +13,36 @@ const DefaultOptions = {
 class Editor {
   el: HTMLElement
   wrapper!: RootNode
-  size: Size
   constructor(config: EditorConfig) {
     this.el = config.el
-    this.size = config.size
-    this.init()
+    this.init(config)
   }
 
   /**
    * @description 初始化
    */
-  init() {
-    this.wrapper = new RootNode({
-      el: this.el,
-      size: {
-        height: this.size.height || DefaultOptions.height,
-        width: this.size.width || DefaultOptions.width,
-      },
-    })
+  init(config: EditorConfig) {
+    this.wrapper = new RootNode(config)
   }
 
-  loadJSON(json: any[]) {
-    const element = json[0]
-    const node = new RectNode({
-      size: element.size,
-    })
-    this.wrapper?.addElement(node.getRenderElement())
-    setTimeout(() => {
-      // node.setSize({
-      //   height: 50,
-      //   width: 50
-      // })
-      // node.setBackground('#000')
-      // node.setTop(0)
-      // node.setLeft(0)
-      // node.setPosition({
-      //   top: 100,
-      //   left: 500
-      // })
-
+  loadJSON(json: Json) {
+    for (let i = 0; i < json.length; i++) {
+      const element = json[i]
+      switch (element.type) {
+        case NodeType.Rect: {
+          const node = new RectNode({
+            size: element.size,
+            position: element.position,
+            background: element.background,
+          })
+          this.wrapper?.addElement(node.getRenderElement())
+          break
+        }
+        default:
+          break
+      }
       this.wrapper.render()
-    }, 500)
+    }
   }
 }
 
