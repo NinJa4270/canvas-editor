@@ -1,11 +1,12 @@
-import { CommandImp } from '../CommandImp'
 import { Node } from '../../nodes'
 import { Size } from '../../types'
-export class SetSizeCommand implements CommandImp {
-  value: any
-  oldValue: any
+import { Command } from '../CommandImp'
+export class SetSizeCommand extends Command {
+  value: Size
+  oldValue: Size
   target: Node
   constructor(target: Node, value: Size) {
+    super()
     this.target = target
     this.value = value
     this.oldValue = target.getSize()
@@ -16,5 +17,4 @@ export class SetSizeCommand implements CommandImp {
   undo() {
     this.target.setSize(this.oldValue)
   }
-  redo() {}
 }

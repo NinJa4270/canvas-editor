@@ -1,6 +1,7 @@
 import { NodeType, RectNode, RootNode } from './nodes'
 import { Size, Json } from './types'
-import { SetSizeCommand } from './commands'
+import { SetSizeCommand, SetBackgroundCommand } from './commands'
+import { execute, redo, undo } from './history'
 interface EditorConfig {
   el: HTMLElement
   size: Size
@@ -46,9 +47,26 @@ class Editor {
               height: 300,
               width: 1000,
             })
-            command.execute()
+            execute(command)
+
+            // setTimeout(() => {
+            //   undo()
+            //   this.wrapper.render()
+            // }, 1000)
+
+            // setTimeout(() => {
+            //   redo()
+            //   this.wrapper.render()
+            // }, 2000);
+
             setTimeout(() => {
-              command.undo()
+              const command1 = new SetBackgroundCommand(node, '#FFF020')
+              execute(command1)
+              this.wrapper.render()
+            }, 1000)
+
+            setTimeout(() => {
+              undo()
               this.wrapper.render()
             }, 2000)
           }

@@ -1,1 +1,2 @@
-export * from './SetSizeCommond'
+export * from './SetSizeCommand'
+export * from './SetBackgroundCommand'
