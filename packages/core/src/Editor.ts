@@ -17,7 +17,7 @@ const DefaultOptions = {
  */
 class Editor {
   el: HTMLElement
-  wrapper?: RootNode
+  wrapper!: RootNode
   size: Size
   constructor(config: EditorConfig) {
     this.el = config.el
@@ -44,6 +44,21 @@ class Editor {
       size: element.size,
     })
     this.wrapper?.addElement(node.getRenderElement())
+    setTimeout(() => {
+      // node.setSize({
+      //   height: 50,
+      //   width: 50
+      // })
+      // node.setBackground('#000')
+      // node.setTop(0)
+      // node.setLeft(0)
+      // node.setPosition({
+      //   top: 100,
+      //   left: 500
+      // })
+
+      this.wrapper.render()
+    }, 500)
   }
 }
 

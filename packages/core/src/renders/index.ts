@@ -1,10 +1,17 @@
 import { NodeType } from '../nodes/types'
-import { RectRender } from './fabric/RectRender'
-import { RootRender } from './fabric/RootRender'
 import { Node } from '../nodes/node'
-type RenderMap = { [k in NodeType]?: any }
+import { RectRender, RootRender } from './fabric'
 
-const renderMap: RenderMap = {
+class noopRender {}
+
+const RenderMap = {
+  [NodeType.Node]: noopRender,
+  [NodeType.Rect]: RectRender,
+  [NodeType.Root]: RootRender,
+}
+
+const renderMap: typeof RenderMap = {
+  [NodeType.Node]: noopRender,
   [NodeType.Rect]: RectRender,
   [NodeType.Root]: RootRender,
 }
@@ -12,3 +19,5 @@ const renderMap: RenderMap = {
 export function createRender(type: NodeType, node: Node) {
   return new renderMap[type](node)
 }
+
+export * from './fabric'

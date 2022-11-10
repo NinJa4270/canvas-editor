@@ -1,4 +1,5 @@
 import { createRender } from '../../renders'
+import { RootRender } from '../../renders/fabric'
 import { Node, NodeConfig } from '../node'
 import { NodeType } from '../types'
 
@@ -8,7 +9,8 @@ interface RootNodeConfig extends NodeConfig {
 
 export class RootNode extends Node {
   type = NodeType.Root
-  _render = createRender(NodeType.Root, this)
+  _render = createRender(NodeType.Root, this) as RootRender
+
   constructor(config: RootNodeConfig) {
     super({ size: config.size })
     this.init(config)
@@ -24,5 +26,9 @@ export class RootNode extends Node {
 
   addElement(el: any) {
     return this._render.addElement(el)
+  }
+
+  render() {
+    this._render.render()
   }
 }

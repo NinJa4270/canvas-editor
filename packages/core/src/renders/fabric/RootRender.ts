@@ -1,8 +1,9 @@
 import { RootRenderImp } from '../implements'
-import { Render } from './Render'
-import { fabric } from 'fabric'
+import { Render } from './index'
 import { Size } from '../../types'
-import { Node } from '../../nodes/node'
+import { Node } from '../../nodes'
+import { fabric } from 'fabric'
+
 export class RootRender extends Render implements RootRenderImp {
   renderElement?: any
   constructor(node: Node) {
@@ -10,7 +11,9 @@ export class RootRender extends Render implements RootRenderImp {
   }
 
   createRenderElement(el: HTMLElement, size: Size, id: string) {
-    const canvas: any = new fabric.Canvas(id)
+    const canvas: any = new fabric.Canvas(id, {
+      backgroundColor: '#eee',
+    })
     el.append(canvas.wrapperEl)
     this.renderElement = canvas
     this.setSize(size)
@@ -45,5 +48,10 @@ export class RootRender extends Render implements RootRenderImp {
    */
   addElement(el: any) {
     this.renderElement.add(el)
+  }
+
+  // 刷新
+  render() {
+    this.renderElement.renderAll()
   }
 }
