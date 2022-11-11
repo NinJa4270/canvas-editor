@@ -19,11 +19,11 @@ export default {
   output: [
     {
       format: 'cjs',
-      file: pResolve('dist/editor.cjs.js'),
+      file: pResolve('./packages/core/dist/editor.cjs.js'),
     },
     {
       format: 'es',
-      file: pResolve('dist/editor.esm.js'),
+      file: pResolve('./packages/core/dist/editor.esm.js'),
     },
   ],
   plugins: [

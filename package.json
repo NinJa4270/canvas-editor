@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev:core": "pnpm -F @ninja/core dev",
+    "dev:ui": "pnpm -F @ninja/ui dev",
     "build:core": "pnpm -F @ninja/core build",
     "lint": "eslint packages/**/*.ts",
     "format": "prettier --write 'packages/**/*.ts'",
