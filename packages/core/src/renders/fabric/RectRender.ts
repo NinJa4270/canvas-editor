@@ -1,14 +1,17 @@
 import { RectRenderImp } from '../implements'
 import { Render } from './index'
-import { Node } from '../../nodes'
-import { Position, Size } from '../../types'
+import { Node, RectNode } from '../../nodes'
+import { Position, Scale, Size } from '../../types'
 import { fabric } from 'fabric'
 
 interface createRenderElementOptions {
+  node: RectNode
   height: number
   width: number
   top: number
   left: number
+  scaleX: number
+  scaleY: number
   background: string
 }
 
@@ -61,5 +64,17 @@ export class RectRender extends Render implements RectRenderImp {
   setPosition(position: Position) {
     this.setTop(position.top)
     this.setLeft(position.left)
+  }
+
+  setScale(scale: Scale) {
+    console.log('%cRectRender.ts line:71 renderElement', 'color: #007acc;', this.renderElement)
+  }
+
+  setScaleX(scaleX: number) {
+    console.log('%cRectRender.ts line:71 renderElement', 'color: #007acc;', this.renderElement)
+  }
+
+  setScaleY(scaleY: number) {
+    console.log('%cRectRender.ts line:71 renderElement', 'color: #007acc;', this.renderElement)
   }
 }

@@ -8,4 +8,9 @@ export interface Position {
   left: number
 }
 
+export interface Scale {
+  scaleX: number
+  scaleY: number
+}
+
 export * from './json'

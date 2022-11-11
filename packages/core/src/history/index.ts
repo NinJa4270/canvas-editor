@@ -7,6 +7,7 @@ export function execute(cmd: Command) {
   cmd.execute()
   undoStack.push(cmd)
   redoStack.length = 0
+  console.log('%cindex.ts line:11 undoStack', 'color: #007acc;', undoStack)
 }
 
 export function undo() {

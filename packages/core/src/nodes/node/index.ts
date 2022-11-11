@@ -1,9 +1,10 @@
-import { Position, Size } from '../../types'
+import { Position, Size, Scale } from '../../types'
 import { NodeType } from '../types'
 
 export interface NodeConfig {
   size: Size
   position: Position
+  scale?: Scale
   background: string
 }
 
@@ -12,10 +13,12 @@ export abstract class Node {
   size: Size
   background: string
   position: Position
+  scale?: Scale
   constructor(config: NodeConfig) {
     this.size = config.size
     this.position = config.position
     this.background = config.background
+    this.scale = config.scale
   }
 
   setSize(size: Size) {
@@ -64,5 +67,27 @@ export abstract class Node {
 
   getPosition() {
     return this.position
+  }
+
+  setScaleX(scaleX: number) {
+    this.scale!.scaleX = scaleX
+  }
+
+  setScaleY(scaleY: number) {
+    this.scale!.scaleY = scaleY
+  }
+
+  setScale(scale: Scale) {
+    this.scale! = scale
+  }
+
+  getScaleX() {
+    return this.scale!.scaleX
+  }
+  getScaleY() {
+    return this.scale!.scaleY
+  }
+  getScale() {
+    return this.scale
   }
 }

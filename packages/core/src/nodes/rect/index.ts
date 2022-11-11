@@ -1,5 +1,5 @@
 import { createRender, RectRender } from '../../renders'
-import { Position, Size } from '../../types'
+import { Position, Scale, Size } from '../../types'
 import { merge } from '../../utils'
 import { Node, NodeConfig } from '../index'
 import { NodeType } from '../types'
@@ -8,6 +8,7 @@ interface RectConfig {
   size?: Size
   position?: Position
   background?: string
+  scale?: Scale
 }
 
 const defaultOptions: NodeConfig = {
@@ -18,6 +19,10 @@ const defaultOptions: NodeConfig = {
   position: {
     left: 200,
     top: 200,
+  },
+  scale: {
+    scaleX: 1,
+    scaleY: 1,
   },
   background: 'green',
 }
@@ -34,10 +39,13 @@ export class RectNode extends Node {
 
   init(config: NodeConfig) {
     this._render.createRenderElement({
+      node: this,
       height: config.size.height,
       width: config.size.width,
       top: config.position.top,
       left: config.position.left,
+      scaleX: config.scale!.scaleX,
+      scaleY: config.scale!.scaleY,
       background: config.background,
     })
   }
@@ -69,5 +77,20 @@ export class RectNode extends Node {
   setPosition(position: Position) {
     this._render.setPosition(position)
     super.setPosition(position)
+  }
+
+  setScaleX(scaleX: number) {
+    this._render.setScaleX(scaleX)
+    super.setScaleX(scaleX)
+  }
+
+  setScaleY(scaleY: number) {
+    this._render.setScaleY(scaleY)
+    super.setScaleY(scaleY)
+  }
+
+  setScale(scale: Scale) {
+    this._render.setScale(scale)
+    super.setScale(scale)
   }
 }

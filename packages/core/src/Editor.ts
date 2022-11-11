@@ -43,32 +43,28 @@ class Editor {
             //   height: 300,
             //   width: 1000
             // })
-            const command = new SetSizeCommand(node, {
-              height: 300,
-              width: 1000,
-            })
-            execute(command)
-
+            // const command = new SetSizeCommand(node, {
+            //   height: 300,
+            //   width: 1000,
+            // })
+            // execute(command)
             // setTimeout(() => {
             //   undo()
             //   this.wrapper.render()
             // }, 1000)
-
             // setTimeout(() => {
             //   redo()
             //   this.wrapper.render()
             // }, 2000);
-
-            setTimeout(() => {
-              const command1 = new SetBackgroundCommand(node, '#FFF020')
-              execute(command1)
-              this.wrapper.render()
-            }, 1000)
-
-            setTimeout(() => {
-              undo()
-              this.wrapper.render()
-            }, 2000)
+            // setTimeout(() => {
+            //   const command1 = new SetBackgroundCommand(node, '#FFF020')
+            //   execute(command1)
+            //   this.wrapper.render()
+            // }, 1000);
+            // setTimeout(() => {
+            //   undo()
+            //   this.wrapper.render()
+            // }, 2000);
           }
           this.wrapper?.addElement(node.getRenderElement())
           break

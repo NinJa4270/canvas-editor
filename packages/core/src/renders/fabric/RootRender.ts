@@ -3,15 +3,18 @@ import { Render } from './index'
 import { Size } from '../../types'
 import { Node, NodeConfig, RootNodeConfig } from '../../nodes'
 import { fabric } from 'fabric'
+import { debounce } from '../../utils'
+import { SetScaleCommand, SetPositionCommand } from '../../commands'
+import { execute, undo } from '../../history'
 
 export interface createRenderElementOptions {
   height: number
   width: number
   background: string
 }
-
 export class RootRender extends Render implements RootRenderImp {
-  renderElement?: any
+  renderElement!: fabric.Canvas & { wrapperEl: HTMLElement }
+  _render = this
   constructor(node: Node) {
     super(node)
   }
@@ -23,6 +26,46 @@ export class RootRender extends Render implements RootRenderImp {
     })
     el.append(canvas.wrapperEl)
     this.renderElement = canvas
+    this.initEvent()
+  }
+
+  // 内部事件
+  initEvent() {
+    const movingFn = debounce(this.resolveEvent, 500)
+    const scalingFn = debounce(this.resolveEvent, 500)
+    // 移动
+    this.renderElement.on('object:moving', movingFn)
+    // 控制器
+    this.renderElement.on('object:scaling', scalingFn)
+  }
+
+  resolveEvent(e: fabric.IEvent<Event>) {
+    const target = e.target as fabric.Object & { node: Node }
+    const transform = e.transform as any
+    switch (transform.action) {
+      // 内部触发移动事件
+      case 'drag': {
+        const { left, top } = target.getBoundingRect()
+        const command = new SetPositionCommand(target.node, {
+          left,
+          top,
+        })
+        execute(command)
+        break
+      }
+      // 内部触发缩放事件
+      case 'scale':
+        {
+          const command = new SetScaleCommand(target.node, {
+            scaleX: target.scaleX!,
+            scaleY: target.scaleY!,
+          })
+          execute(command)
+        }
+        break
+      default:
+        break
+    }
   }
 
   /**
