@@ -1,4 +1,4 @@
-import { Node } from './../nodes'
+import { Node, RootNode } from './../nodes'
 export interface CommandImp {
   value: any
   oldValue: any
@@ -9,7 +9,7 @@ export interface CommandImp {
 export abstract class Command implements CommandImp {
   value: any
   oldValue: any
-  target!: Node
-  execute() {}
-  undo() {}
+  static context: RootNode
+  execute() { }
+  undo() { }
 }

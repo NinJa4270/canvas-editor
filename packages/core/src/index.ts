@@ -1,2 +1,3 @@
-export * from './Editor'
-export * from './history'
+import { createEditor } from './Editor'
+import { dispatch, CommandFlag } from './commands'
+export { createEditor, dispatch, CommandFlag }

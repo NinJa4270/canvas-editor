@@ -1,11 +1,10 @@
 import { RootRenderImp } from '../implements'
 import { Render } from './index'
 import { Size } from '../../types'
-import { Node, NodeConfig, RootNodeConfig } from '../../nodes'
+import { Node } from '../../nodes'
 import { fabric } from 'fabric'
 import { debounce } from '../../utils'
-import { SetScaleCommand, SetPositionCommand } from '../../commands'
-import { execute, undo } from '../../history'
+import { dispatch, CommandFlag } from '../../commands'
 
 export interface createRenderElementOptions {
   height: number
@@ -46,21 +45,19 @@ export class RootRender extends Render implements RootRenderImp {
       // 内部触发移动事件
       case 'drag': {
         const { left, top } = target.getBoundingRect()
-        const command = new SetPositionCommand(target.node, {
+        dispatch(CommandFlag.Set_Position, target.node, {
           left,
           top,
         })
-        execute(command)
         break
       }
       // 内部触发缩放事件
       case 'scale':
         {
-          const command = new SetScaleCommand(target.node, {
+          dispatch(CommandFlag.Set_Scale, target.node, {
             scaleX: target.scaleX!,
             scaleY: target.scaleY!,
           })
-          execute(command)
         }
         break
       default:

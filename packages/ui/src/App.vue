@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { createEditor, redo, undo } from '@ninja/core'
+import { createEditor, dispatch, CommandFlag } from '@ninja/core'
 export default {
   data() {
     return {
@@ -40,17 +40,17 @@ export default {
         background: '#FF0',
       },
     ]
-    editor.loadJSON(json)
     this.editor = editor
+    this.redoStackLength = this.editor.hisotry.redoStack.length
+    this.undoStackLength = this.editor.hisotry.undoStack.length
+    dispatch(CommandFlag.Load_Json, editor.context, json)
   },
   methods: {
     redo() {
-      redo()
-      this.editor.wrapper.render()
+      this.editor.hisotry.redo()
     },
     undo() {
-      undo()
-      this.editor.wrapper.render()
+      this.editor.hisotry.undo()
     },
   },
 }
