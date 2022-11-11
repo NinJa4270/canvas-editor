@@ -9,7 +9,6 @@ export interface History {
   undoStack: Command[]
 }
 
-
 export function createHistory(context: RootNode): History {
   const redoStack: Command[] = []
   const undoStack: Command[] = []
@@ -44,6 +43,6 @@ export function createHistory(context: RootNode): History {
     undo,
     redo,
     redoStack,
-    undoStack
+    undoStack,
   }
 }

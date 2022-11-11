@@ -10,6 +10,6 @@ export abstract class Command implements CommandImp {
   value: any
   oldValue: any
   static context: RootNode
-  execute() { }
-  undo() { }
+  execute() {}
+  undo() {}
 }
