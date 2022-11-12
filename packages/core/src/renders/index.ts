@@ -1,23 +1,25 @@
-import { NodeType } from '../nodes/types'
-import { Node } from '../nodes/node'
-import { RectRender, RootRender } from './fabric'
+import { RectRender, RootRender, CircleRender } from './fabric'
+import { EditorNode, NodeType } from '../nodes'
 
-class noopRender {}
+class noopRender { }
 
 const RenderMap = {
   [NodeType.Node]: noopRender,
   [NodeType.Rect]: RectRender,
   [NodeType.Root]: RootRender,
+  [NodeType.Circle]: CircleRender,
 }
 
 const renderMap: typeof RenderMap = {
   [NodeType.Node]: noopRender,
   [NodeType.Rect]: RectRender,
   [NodeType.Root]: RootRender,
+  [NodeType.Circle]: CircleRender,
 }
 
-export function createRender(type: NodeType, node: Node) {
-  return new renderMap[type](node)
+
+export function createRender(node: EditorNode) {
+  return new renderMap[node.type](node)
 }
 
 export * from './fabric'

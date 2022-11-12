@@ -1,4 +1,5 @@
 export * from './node'
 export * from './root'
 export * from './rect'
+export * from './circle'
 export * from './types'

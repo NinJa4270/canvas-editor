@@ -1,10 +1,10 @@
+import { EditorNode } from '../../nodes'
 import { RenderImp } from '../implements/RenderImp'
-import { Node } from '../../nodes'
 export abstract class Render implements RenderImp {
   renderElement?: any
-  node: Node
-  constructor(node: Node) {
+  node: EditorNode
+  constructor(node: EditorNode) {
     this.node = node
   }
-  render() {}
+  render() { }
 }

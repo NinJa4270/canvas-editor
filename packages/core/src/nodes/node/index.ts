@@ -2,23 +2,35 @@ import { Position, Size, Scale } from '../../types'
 import { NodeType } from '../types'
 
 export interface NodeConfig {
-  size: Size
+  size?: Size
   position: Position
   scale?: Scale
+  radius?: number
   background: string
 }
 
 export abstract class Node {
   type = NodeType.Node
-  size: Size
+  size?: Size
   background: string
   position: Position
   scale?: Scale
+  radius?: number
   constructor(config: NodeConfig) {
+    console.log('%cindex.ts line:20 config', 'color: #007acc;', config);
     this.size = config.size
     this.position = config.position
     this.background = config.background
     this.scale = config.scale
+    this.radius = config.radius
+  }
+
+  setRadius(radius: number) {
+    this.radius = radius
+  }
+
+  getRadius() {
+    return this.radius
   }
 
   setSize(size: Size) {
@@ -26,11 +38,11 @@ export abstract class Node {
   }
 
   getHeight() {
-    return this.size.height
+    return this.size?.height
   }
 
   getWidth() {
-    return this.size.width
+    return this.size?.width
   }
 
   getSize() {

@@ -1,7 +1,7 @@
 import { RootRenderImp } from '../implements'
 import { Render } from './index'
 import { Size } from '../../types'
-import { Node } from '../../nodes'
+import { Node, RootNode, EditorNode } from '../../nodes'
 import { fabric } from 'fabric'
 import { debounce } from '../../utils'
 import { dispatch, CommandFlag } from '../../commands'
@@ -14,7 +14,7 @@ export interface createRenderElementOptions {
 export class RootRender extends Render implements RootRenderImp {
   renderElement!: fabric.Canvas & { wrapperEl: HTMLElement }
   _render = this
-  constructor(node: Node) {
+  constructor(node: EditorNode) {
     super(node)
   }
 

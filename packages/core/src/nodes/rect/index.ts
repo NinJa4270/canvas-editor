@@ -29,7 +29,7 @@ const defaultOptions: NodeConfig = {
 
 export class RectNode extends Node {
   type = NodeType.Rect
-  _render = createRender(NodeType.Rect, this) as RectRender
+  _render = createRender(this) as RectRender
 
   constructor(config: RectConfig) {
     const options = merge(config, defaultOptions)
@@ -40,8 +40,8 @@ export class RectNode extends Node {
   init(config: NodeConfig) {
     this._render.createRenderElement({
       node: this,
-      height: config.size.height,
-      width: config.size.width,
+      height: config.size!.height,
+      width: config.size!.width,
       top: config.position.top,
       left: config.position.left,
       scaleX: config.scale!.scaleX,

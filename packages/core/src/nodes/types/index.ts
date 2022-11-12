@@ -1,5 +1,12 @@
+import { CircleNode } from "../circle";
+import { RectNode } from "../rect";
+import { RootNode } from "../root";
+
 export const enum NodeType {
-  Node = 1,
-  Root = 1 << 1,
-  Rect = 1 << 2,
+  Node = 'node',
+  Root = 'root',
+  Rect = 'rect',
+  Circle = 'circle'
 }
+
+export type EditorNode = RectNode | CircleNode | RootNode

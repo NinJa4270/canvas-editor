@@ -1,6 +1,6 @@
 import { RectRenderImp } from '../implements'
 import { Render } from './index'
-import { Node, RectNode } from '../../nodes'
+import { EditorNode, RectNode } from '../../nodes'
 import { Position, Scale, Size } from '../../types'
 import { fabric } from 'fabric'
 
@@ -18,7 +18,7 @@ interface createRenderElementOptions {
 export class RectRender extends Render implements RectRenderImp {
   renderElement!: fabric.Rect
 
-  constructor(node: Node) {
+  constructor(node: EditorNode) {
     super(node)
   }
 

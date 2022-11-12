@@ -1,4 +1,4 @@
-import { Node, NodeType, RectNode } from '../../nodes'
+import { CircleNode, EditorNode, Node, NodeType, RectNode } from '../../nodes'
 import { Json } from '../../types'
 import { Command } from '../CommandImp'
 export class LoadJsonCommand extends Command {
@@ -24,10 +24,23 @@ export class LoadJsonCommand extends Command {
           Command.context.addElement(node.getRenderElement())
           break
         }
+        case NodeType.Circle: {
+          const node = new CircleNode({
+            radius: element.radius,
+            position: element.position,
+            background: element.background,
+          })
+          Command.context.addElement(node.getRenderElement())
+          break
+        }
         default:
           break
       }
     }
   }
-  undo() {}
+  undo() { }
+
+  addElement(node: EditorNode) {
+    Command.context.addElement(node.getRenderElement())
+  }
 }

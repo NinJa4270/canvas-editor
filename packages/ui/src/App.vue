@@ -21,18 +21,15 @@ export default {
     })
     const json = [
       {
-        type: 4,
+        type: 'rect',
         size: {
           height: 100,
           width: 100,
         },
       },
       {
-        type: 4,
-        size: {
-          height: 300,
-          width: 50,
-        },
+        type: 'circle',
+        radius: 50,
         position: {
           top: 0,
           left: 0,

@@ -24,7 +24,7 @@ const defaultOptions: NodeConfig = {
 
 export class RootNode extends Node {
   type = NodeType.Root
-  _render = createRender(NodeType.Root, this) as RootRender
+  _render = createRender(this) as RootRender
 
   constructor(config: RootNodeConfig) {
     const options = merge(config, defaultOptions)
@@ -34,8 +34,8 @@ export class RootNode extends Node {
 
   init(config: NodeConfig & RootNodeConfig) {
     this._render.createRenderElement(config.el, {
-      height: config.size.height,
-      width: config.size.width,
+      height: config.size!.height,
+      width: config.size!.width,
       background: config.background,
     })
   }
